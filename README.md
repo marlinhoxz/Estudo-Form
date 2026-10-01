@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Estudo Form
 
-## Getting Started
+Estudo desenvolvido com **Next.js e TypeScript** com o objetivo de praticar a criação, tipagem e manipulação de formulários.
 
-First, run the development server:
+Neste projeto, os dados preenchidos pelo usuário são controlados através do `useState` e enviados para uma API utilizando `fetch`.
+
+O foco principal do projeto foi trabalhar com **TypeScript de forma mais segura**, reduzindo possíveis erros durante o desenvolvimento.
+
+## 🚀 Tecnologias
+
+- **Next.js**
+- **React**
+- **TypeScript**
+- **CSS**
+- **Fetch API**
+
+## 📚 Conceitos praticados
+
+Durante o desenvolvimento deste projeto, foram praticados conceitos como:
+
+- `useState`
+- Formulários controlados
+- `onChange`
+- `onSubmit`
+- Eventos tipados com TypeScript
+- `keyof`
+- Tipagem de objetos
+- `reduce`
+- Funções assíncronas
+- `fetch`
+- Requisições `POST`
+- Manipulação de respostas da API
+- API Routes do Next.js
+
+## 🔐 Tipagem
+
+O formulário utiliza um tipo `FormType` para definir a estrutura dos dados:
+
+```ts
+
+type InputsTypes = "email" | "password" | "text";
+
+type FormType = {
+  nome: string;
+  email: string;
+  senha: string;
+  cep: string;
+  rua: string;
+  numero: string;
+  bairro: string;
+  cidade: string;
+  estado: string;
+};
+```
+
+Os campos também utilizam `keyof FormType`, garantindo que os IDs definidos na configuração do formulário correspondam às propriedades existentes no tipo principal.
+
+```ts
+type FieldTypes = {
+  id: keyof FormType;
+  label: string;
+  type: InputsTypes;
+};
+```
+
+Dessa forma, o TypeScript ajuda a evitar referências a campos que não existem no formulário.
+
+## 🔄 Funcionamento
+
+O estado inicial do formulário é criado dinamicamente utilizando `reduce()` a partir da configuração dos campos.
+
+```ts
+FormField.reduce<FormType>((acc, field) => {
+  return {
+    ...acc,
+    [field.id]: "",
+  };
+}, {} as FormType);
+```
+
+As alterações dos inputs são controladas através do `onChange`, enquanto o envio do formulário é tratado pelo `onSubmit`.
+
+Após o envio, os dados são encaminhados para a API através de uma requisição `POST`.
+
+## 📁 Estrutura
+
+```text
+src/
+├── app/
+│   ├── api/
+│   │   └── route.ts
+│   ├── layout.tsx
+│   └── page.tsx
+├── public/
+└── ...
+```
+
+## ⚙️ Como executar
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/marlinhoxz/Estudo-Form.git
+```
+
+Entre na pasta:
+
+```bash
+cd Estudo-Form
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Execute o projeto:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra no navegador:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎯 Objetivo
 
-## Learn More
+Este projeto faz parte dos meus estudos de **React, Next.js e TypeScript**, com foco em compreender melhor a tipagem de formulários e a comunicação com APIs.
 
-To learn more about Next.js, take a look at the following resources:
+## 👨‍💻 Autor
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Marlon**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[GitHub](https://github.com/marlinhoxz)
