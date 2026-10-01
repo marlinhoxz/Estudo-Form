@@ -38,8 +38,6 @@ O formulário utiliza um tipo `FormType` para definir a estrutura dos dados:
 
 ```ts
 
-type InputsTypes = "email" | "password" | "text";
-
 type FormType = {
   nome: string;
   email: string;
@@ -56,6 +54,9 @@ type FormType = {
 Os campos também utilizam `keyof FormType`, garantindo que os IDs definidos na configuração do formulário correspondam às propriedades existentes no tipo principal.
 
 ```ts
+
+type InputsTypes = "email" | "password" | "text";
+
 type FieldTypes = {
   id: keyof FormType;
   label: string;
